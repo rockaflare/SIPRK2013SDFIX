@@ -1,0 +1,125 @@
+﻿<Controls:MetroWindow x:Class="SIPRK2013SDFIX.View.EditDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIPRK2013SDFIX.View"
+        mc:Ignorable="d"
+        Title="EditDataWindow" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconModern Width="{TemplateBinding Width}"
+                                      Height="{TemplateBinding Height}"
+                                      Margin="4"
+                                      Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                      Kind="DrawPencil" />
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+    <Grid Margin="10">
+        <Controls:MetroAnimatedTabControl>
+            <Controls:MetroTabItem Name="TabSiswa" Header="Data Siswa">
+                <Grid Margin="50">
+                    <DataGrid Name="GridSiswa" AutoGenerateColumns="False" VerticalAlignment="Top" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="NISN" Binding="{Binding nisn}"/>
+                            <DataGridTextColumn Header="No Induk" Binding="{Binding no_induk}"/>
+                            <DataGridTextColumn Header="Nama Siswa" Width="150" Binding="{Binding nm_siswa}"/>
+                            <DataGridTextColumn Header="Jenis Kelamin" Binding="{Binding gender}"/>
+                            <DataGridTextColumn Header="Agama" Binding="{Binding agama}"/>
+                            <DataGridTextColumn Header="Tempat Lahir" Binding="{Binding tempat_lahir}"/>
+                            <DataGridTextColumn Header="Tanggal Lahir" Binding="{Binding tgl_lahir}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="Edit"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Name="EditSiswa" Content="{materialDesign:PackIcon Kind=Pencil}" Click="EditSiswa_Click"/>
+                                            <Button Name="DelSiswa" Content="{materialDesign:PackIcon Kind=TrashCan}" Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedAccentButton}"/>
+                                        </StackPanel>
+                                    </DataTemplate>                                    
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Name="TabNilai" Header="Nilai Sikap, Ekskul dan Absensi">
+                <Grid Margin="50">
+                    <DataGrid Name="GridSikap" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Top">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nisn" Visibility="Collapsed" Binding="{Binding nisn}"/>
+                            <DataGridTextColumn Header="Nama Siswa" Binding="{Binding nm_siswa}"/>
+                            <DataGridTextColumn Header="Semester" Binding="{Binding semester}"/>
+                            <DataGridTextColumn Header="IdSikap" MaxWidth="0"  Binding="{Binding id_sikap}"/>
+                            <DataGridTextColumn Header="Deskripsi Spiritual" Width="100" Binding="{Binding deskripsi_ki1}"/>
+                            <DataGridTextColumn Header="Deskripsi Sosial" Width="100" Binding="{Binding deskripsi_ki2}"/>
+                            <DataGridTextColumn Header="IdEkskul" Visibility="Hidden" Binding="{Binding id_eks}"/>
+                            <DataGridTextColumn Header="Ekskul 1" Binding="{Binding eskul1}"/>
+                            <DataGridTextColumn Header="Nilai Ekskul 1" Binding="{Binding nilai1}"/>
+                            <DataGridTextColumn Header="IdAbsen" Visibility="Hidden" Binding="{Binding id_absen}"/>
+                            <DataGridTextColumn Header="Sakit" Binding="{Binding sakit}"/>
+                            <DataGridTextColumn Header="Ijin" Binding="{Binding ijin}"/>
+                            <DataGridTextColumn Header="Alpha" Binding="{Binding alpha}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="Edit"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Name="EditSikapDll" Content="{materialDesign:PackIcon Kind=Pencil}" Click="EditSikapDll_Click"/>
+                                            <Button Name="DelSikapDll" Content="{materialDesign:PackIcon Kind=TrashCan}" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5,0,0,0"/>
+                                        </StackPanel>                                        
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Name="TabPengket" Header="Pengetahuan dan Keterampilan">
+                <Grid Margin="50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>                        
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="Mata Pelajaran" VerticalAlignment="Center"/>
+                        <ComboBox Name="CBMapel" Width="250" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Button Name="TampilkanMapel" Content="Tampilkan" Width="100" Margin="10,0,0,0" Click="TampilkanMapel_Click"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="2" Name="GridPengKet" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Top">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nama Siswa" Binding="{Binding nm_siswa}"/>
+                            <DataGridTextColumn Header="Semester" Binding="{Binding semester}"/>
+                            <DataGridTextColumn Header="Mata Pelajaran" Binding="{Binding nm_mapel}"/>
+                            <DataGridTextColumn Header="Predikat KI-3" Binding="{Binding predikatpengetahuan}"/>
+                            <DataGridTextColumn Header="Deskripsi KI-3" Binding="{Binding deskripsi_pengetahuan}" Width="110"/>
+                            <DataGridTextColumn Header="Predikat KI-4" Binding="{Binding predikatketerampilan}"/>
+                            <DataGridTextColumn Header="Deskripsi KI-4" Binding="{Binding deskripsi_keterampilan}" Width="110"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="Edit"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Name="EditPengket" Content="{materialDesign:PackIcon Kind=Pencil}" Click="EditPengket_Click"/>
+                                            <Button Name="DelPengket" Content="{materialDesign:PackIcon Kind=TrashCan}" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5,0,0,0" Click="DelPengket_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Controls:MetroTabItem>            
+        </Controls:MetroAnimatedTabControl>
+    </Grid>
+</Controls:MetroWindow>

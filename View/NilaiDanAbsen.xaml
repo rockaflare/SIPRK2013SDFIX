@@ -1,0 +1,182 @@
+﻿<Controls:MetroWindow x:Class="SIPRK2013SDFIX.View.NilaiDanAbsen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIPRK2013SDFIX.View"
+        mc:Ignorable="d"
+        Title="Nilai Dan Absen" Height="700" Width="1300" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconModern Width="{TemplateBinding Width}"
+                                      Height="{TemplateBinding Height}"
+                                      Margin="4"
+                                      Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                      Kind="Book" />
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Controls:MetroAnimatedTabControl Grid.Row="1">
+            <Controls:MetroTabItem Header="Nilai Sikap" Name="SikapTab">
+                <Grid Name="SikapGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Nama Siswa"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Semester"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Beribadah"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Bersyukur"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Text="Berdoa"/>
+                        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Text="Toleransi"/>
+                        <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Text="Jujur"/>
+                        <TextBlock Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Text="Disiplin"/>
+                        <TextBlock Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Text="Tanggung Jawab"/>
+                        <TextBlock Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Text="Peduli"/>
+                        <TextBlock Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Text="Santun"/>
+                        <TextBlock Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" Text="Percaya Diri"/>
+                        <TextBlock Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" Text="Kerjasama"/>
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Top" Text="Deskripsi Spiritual"/>
+                        <TextBlock Grid.Row="8" Grid.Column="3" VerticalAlignment="Top" Text="Deskripsi Sosial"/>
+
+                        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Name="NamaBox" IsEnabled="False"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Name="SemBox" IsEnabled="False"/>
+                        <Controls:NumericUpDown Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Name="IbadahBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Name="SyukurBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Name="DoaBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Name="ToleransiBox" Minimum="0" Maximum="2"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" Name="DSpiritBox" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                        <Controls:NumericUpDown Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Name="JujurBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Name="DisiplinBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Name="TJBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" Name="PeduliBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Name="SantunBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" Name="PDBox" Minimum="0" Maximum="2"/>
+                        <Controls:NumericUpDown Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" Name="KerjasamaBox" Minimum="0" Maximum="2"/>
+                        <TextBox Grid.Row="8" Grid.Column="4" VerticalAlignment="Top" Name="DSosialBox" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                        <Button Grid.Column="4" Grid.Row="9" Width="120" Name="DeskripsiButt" Content="Cek Deskripsi" Click="DeskripsiButt_Click"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontStyle="Italic" Text="Info : Nilai 0 = Baik, 1 = Kurang, 2 = Sangat Baik" TextWrapping="Wrap"/>
+                    </Grid>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Nilai Ekskul" Name="EkskulTab">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Ekskul 1"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Ekskul 2"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Ekskul 3"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Nilai Ekskul 1"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Nilai Ekskul 2"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Text="Nilai Ekskul 3"/>
+
+                        <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="Ekskul1Box"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Name="Ekskul2Box"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Name="Ekskul3Box"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Name="NEkskul1Box"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Name="NEkskul2Box"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Name="NEkskul3Box"/>
+                    </Grid>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Absensi" Name="AbsensiTab">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Sakit"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Izin"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Alpha"/>
+
+                        <Controls:NumericUpDown Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="SakitBox"/>
+                        <Controls:NumericUpDown Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Name="IzinBox"/>
+                        <Controls:NumericUpDown Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Name="AlphaBox"/>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Width="300">
+                            <Button VerticalAlignment="Center" Width="100" Name="SimpanAll" Content="Simpan" Click="SimpanAll_Click"/>
+                            <Button VerticalAlignment="Center" Width="100" Name="SimpanEditAll" Content="Edit" Margin="10,0,0,0" IsEnabled="False" Click="SimpanEditAll_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Controls:MetroTabItem>
+        </Controls:MetroAnimatedTabControl>
+    </Grid>
+</Controls:MetroWindow>

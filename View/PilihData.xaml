@@ -1,0 +1,43 @@
+﻿<Controls:MetroWindow x:Class="SIPRK2013SDFIX.View.PilihData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIPRK2013SDFIX.View"
+        mc:Ignorable="d"
+        Title="Pilih Data" Height="260" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Pilih Nilai"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Nama"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Mapel"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Semester"/>
+
+        <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="STipeNilai" DropDownClosed="STipeNilai_DropDownClosed">
+            <ComboBoxItem Content="Nilai Sikap Dll"/>
+            <ComboBoxItem Content="Nilai Pengetahuan dan Keterampilan"/>
+        </ComboBox>
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Name="SNama" DropDownClosed="SNama_DropDownClosed"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Name="SMapel" DropDownClosed="SMapel_DropDownClosed"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Name="SSemester">
+            <ComboBoxItem Content="Ganjil"/>
+            <ComboBoxItem Content="Genap"/>
+        </ComboBox>
+
+        <Button Grid.Column="1" Grid.Row="5" Name="SetButt" Content="Pilih" Width="100" Click="SetButt_Click"/>
+    </Grid>
+</Controls:MetroWindow>
