@@ -9,7 +9,7 @@ SIPRK13-SD adalah Sistem Informasi Pengolahan Raport Kurikulum 2013 untuk Sekola
 
 ### Tech
 
-Dillinger uses a number of open source projects to work properly:
+SIPRK13-SD dibuat menggunakan:
 
 * [.Net Framework] - to build and run application on windows!
 * [SQLite] - small embedded database.
