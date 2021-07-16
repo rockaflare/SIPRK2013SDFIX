@@ -80,5 +80,20 @@ namespace SIPRK2013SDFIX.RaportDb
             hasil = Convert.ToInt32(dt.Rows[0][0]);
             return hasil;
         }
+        public bool IsRowExist(string nisn, int mode)
+        {
+            string query = "";
+            if (mode == 0)
+            {
+                query = $"SELECT * FROM view_editsikap WHERE nisn = '{nisn}'";
+            }
+            else if (mode == 1)
+            {
+                query = $"SELECT * FROM view_editpengket WHERE nisn = '{nisn}'";
+            }
+            RaportDB dB = new RaportDB();
+            DataTable dt = dB.GetDataRaport(query);
+            return dt.Rows.Count > 0 ? true : false;
+        }
     }
 }

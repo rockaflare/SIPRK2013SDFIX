@@ -32,7 +32,7 @@ namespace SIPRK2013SDFIX.View
             NamaBox.Text = _namaSet;
             SemBox.Text = _semesterSet;
         }
-        public void SetEdit(string EditNisn, string EditNama, string EditSemester, string IdSikapEdit, string IdEksEdit, string IdAbsenEdit)
+        public void SetEdit(string EditNisn, string EditNama, string EditPanggilan, string EditSemester, string IdSikapEdit, string IdEksEdit, string IdAbsenEdit)
         {
             _idsikapSet = IdSikapEdit;
             _ideksSet = IdEksEdit;
@@ -40,6 +40,7 @@ namespace SIPRK2013SDFIX.View
             _nisnSet = EditNisn;
             _namaSet = EditNama;
             _semesterSet = EditSemester;
+            _nmpanggilanSet = EditPanggilan;
 
             NamaBox.Text = _namaSet;
             SemBox.Text = _semesterSet;
@@ -182,6 +183,7 @@ namespace SIPRK2013SDFIX.View
             if (SimpanSikap() && SimpanEkskul() && SimpanAbsensi())
             {
                 await this.ShowMessageAsync("Nilai dan Absen", "Seluruh data berhasil tersimpan!");
+                this.Close();
             }
             else
             {
@@ -354,7 +356,6 @@ namespace SIPRK2013SDFIX.View
         private void SimpanAll_Click(object sender, RoutedEventArgs e)
         {
             SimpanAllFunc();
-            this.Close();
         }
 
         private void DeskripsiButt_Click(object sender, RoutedEventArgs e)

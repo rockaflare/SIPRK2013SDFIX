@@ -58,7 +58,7 @@ namespace SIPRK2013SDFIX.RaportDb
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
         }
-        public bool HapusAll(Absensi abs)
+        public bool HapusAll(string nisn)
         {
             bool isNice = false;
             RaportDB dB = new RaportDB();
@@ -66,7 +66,7 @@ namespace SIPRK2013SDFIX.RaportDb
             const string query = "DELETE FROM absensi WHERE nisn = @nisn";
             var args = new Dictionary<string, object>
             {
-                {"@nisn", abs.Nisn }
+                {"@nisn", nisn }
             };
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
@@ -86,6 +86,39 @@ namespace SIPRK2013SDFIX.RaportDb
                 Alpha = Convert.ToInt32(dt.Rows[0][4]),
                 Semester = dt.Rows[0][5].ToString()
             };
+            return absensi;
+        }
+        public Absensi GetAbsensiSiswa(string nisn, string semester)
+        {
+            Absensi absensi;
+            RaportDB dB = new RaportDB();
+            string query = $"SELECT * FROM absensi WHERE nisn = '{nisn}' AND semester = '{semester}'";
+            DataTable dt = dB.GetDataRaport(query);
+            if (dt.Rows.Count > 0)
+            {
+                absensi = new Absensi
+                {
+                    IdAbsen = dt.Rows[0][0].ToString(),
+                    Nisn = dt.Rows[0][1].ToString(),
+                    Sakit = Convert.ToInt32(dt.Rows[0][2]),
+                    Ijin = Convert.ToInt32(dt.Rows[0][3]),
+                    Alpha = Convert.ToInt32(dt.Rows[0][4]),
+                    Semester = dt.Rows[0][5].ToString()
+                };
+            }
+            else
+            {
+                absensi = new Absensi
+                {
+                    IdAbsen = "",
+                    Nisn = "",
+                    Sakit = 0,
+                    Ijin = 0,
+                    Alpha = 0,
+                    Semester = ""
+                };
+            }
+            
             return absensi;
         }
     }

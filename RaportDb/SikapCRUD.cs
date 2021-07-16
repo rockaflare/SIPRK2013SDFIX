@@ -79,7 +79,7 @@ namespace SIPRK2013SDFIX.RaportDb
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
         }
-        public bool HapusAll(NilaiSikap ns)
+        public bool HapusAll(string nisn)
         {
             bool isNice = false;
             RaportDB dB = new RaportDB();
@@ -87,7 +87,7 @@ namespace SIPRK2013SDFIX.RaportDb
             const string query = "DELETE FROM nilai_sikap WHERE nisn = @nisn";
             var args = new Dictionary<string, object>
             {
-                {"@nisn", ns.Nisn }
+                {"@nisn", nisn }
             };
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
@@ -117,6 +117,59 @@ namespace SIPRK2013SDFIX.RaportDb
                 DeskripsiKi2 = dt.Rows[0][14].ToString(),
                 Semester = dt.Rows[0][15].ToString()
             };
+            return nilaiSikap;
+        }
+        public NilaiSikap GetNilaiSikapSiswa(string nisn, string semester)
+        {
+            NilaiSikap nilaiSikap;
+            RaportDB dB = new RaportDB();
+            string query = $"SELECT * FROM nilai_sikap WHERE nisn = '{nisn}' AND semester = '{semester}'";
+            DataTable dt = dB.GetDataRaport(query);
+            if (dt.Rows.Count > 0 )
+            {
+                nilaiSikap = new NilaiSikap
+                {
+                    IdSikap = dt.Rows[0][0].ToString(),
+                    Nisn = dt.Rows[0][1].ToString(),
+                    Beribadah = Convert.ToInt32(dt.Rows[0][2]),
+                    Bersyukur = Convert.ToInt32(dt.Rows[0][3]),
+                    Berdoa = Convert.ToInt32(dt.Rows[0][4]),
+                    Toleransi = Convert.ToInt32(dt.Rows[0][5]),
+                    Jujur = Convert.ToInt32(dt.Rows[0][6]),
+                    Disiplin = Convert.ToInt32(dt.Rows[0][7]),
+                    TanggungJawab = Convert.ToInt32(dt.Rows[0][8]),
+                    Peduli = Convert.ToInt32(dt.Rows[0][9]),
+                    Santun = Convert.ToInt32(dt.Rows[0][10]),
+                    PercayaDiri = Convert.ToInt32(dt.Rows[0][11]),
+                    Kerjasama = Convert.ToInt32(dt.Rows[0][12]),
+                    DeskripsiKi1 = dt.Rows[0][13].ToString(),
+                    DeskripsiKi2 = dt.Rows[0][14].ToString(),
+                    Semester = dt.Rows[0][15].ToString()
+                };
+            }
+            else
+            {
+                nilaiSikap = new NilaiSikap
+                {
+                    IdSikap = "",
+                    Nisn = "",
+                    Beribadah = 0,
+                    Bersyukur = 0,
+                    Berdoa = 0,
+                    Toleransi = 0,
+                    Jujur = 0,
+                    Disiplin = 0,
+                    TanggungJawab = 0,
+                    Peduli = 0,
+                    Santun = 0,
+                    PercayaDiri = 0,
+                    Kerjasama = 0,
+                    DeskripsiKi1 = "",
+                    DeskripsiKi2 = "",
+                    Semester = ""
+                };
+            }
+            
             return nilaiSikap;
         }
         public string SpiritualDes(int ib, int sy, int doa, int tole, string nm)

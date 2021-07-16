@@ -74,6 +74,7 @@ namespace SIPRK2013SDFIX.View
             string hasil = Regex.Match(dt.Rows[0][0].ToString(), @"\d+").Value;
             return hasil;
         }
+        
         #endregion Load Data
 
         private void EditSiswa_Click(object sender, RoutedEventArgs e)
@@ -89,7 +90,7 @@ namespace SIPRK2013SDFIX.View
         {
             DataRowView rv = (DataRowView)((Button)e.Source).DataContext;
             NilaiDanAbsen nilaiDanAbsen = new NilaiDanAbsen();
-            nilaiDanAbsen.SetEdit(rv.Row[0].ToString(), rv.Row[1].ToString(), rv.Row[12].ToString(), rv.Row[2].ToString(), rv.Row[5].ToString(), rv.Row[8].ToString());
+            nilaiDanAbsen.SetEdit(rv.Row[0].ToString(), rv.Row[1].ToString(), rv.Row[2].ToString(), rv.Row[13].ToString(), rv.Row[3].ToString(), rv.Row[6].ToString(), rv.Row[9].ToString());
             nilaiDanAbsen.Show();
             this.Close();
         }
@@ -128,12 +129,111 @@ namespace SIPRK2013SDFIX.View
                     if (pcrd.Hapus(np) && kcrd.Hapus(nk))
                     {
                         await this.ShowMessageAsync("Pengetahuan dan Keterampilan", "Data berhasil dihapus!");
+                        LoadPengKet();
                     }
                 }
                 catch (SQLiteException ex)
                 {
-                    await this.ShowMessageAsync("Pengetahuan dan Keterampilan", $"Error! {ex}");
+                    await this.ShowMessageAsync("Pengetahuan dan Keterampilan", $"Error! {ex.Message}");
                 }
+            }
+        }
+
+        private async void DelSikapDll_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView drv = (DataRowView)((Button)e.Source).DataContext;
+            SikapCRUD scrd = new SikapCRUD();
+            EkskulCRUD ecrd = new EkskulCRUD();
+            AbsensiCRUD acrd = new AbsensiCRUD();
+            MessageDialogResult res = await this.ShowMessageAsync("Sikap, Ekskul dan Absensi", "Anda akan menghapus data Sikap, Ekskul, dan Absensi. Apa anda yakin ingin melanjutkan?", MessageDialogStyle.AffirmativeAndNegative);
+            if (res == MessageDialogResult.Affirmative)
+            {
+                NilaiSikap ns = new NilaiSikap();
+                NilaiEkskul ne = new NilaiEkskul();
+                Absensi ab = new Absensi();
+                ns.IdSikap = drv.Row[3].ToString();
+                ne.IdEks = drv.Row[6].ToString();
+                ab.IdAbsen = drv.Row[9].ToString();
+                try
+                {
+                    if (scrd.Hapus(ns) && ecrd.Hapus(ne) && acrd.Hapus(ab))
+                    {
+                        await this.ShowMessageAsync("Sikap, Ekskul dan Absensi", "Data berhasil dihapus!");
+                        LoadSikapDll();
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    await this.ShowMessageAsync("Sikap, Ekskul dan Absensi", $"Error! {ex.Message}");
+                }
+            }
+        }
+
+        private async void DelSiswa_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView drv = (DataRowView)((Button)e.Source).DataContext;
+            SiswaCRUD sicrud = new SiswaCRUD();
+            PengetahuanCRUD pcrd = new PengetahuanCRUD();
+            KeterampilanCRUD kcrd = new KeterampilanCRUD();
+            SikapCRUD scrd = new SikapCRUD();
+            EkskulCRUD ecrd = new EkskulCRUD();
+            AbsensiCRUD acrd = new AbsensiCRUD();
+            RumusNilai rn = new RumusNilai();
+            MessageDialogResult res = await this.ShowMessageAsync("Data Siswa", "Anda akan menghapus seluruh data yang berkaitan dengan siswa ini! Anda yakin ingin melanjutkan?", MessageDialogStyle.AffirmativeAndNegative);
+            if (res == MessageDialogResult.Affirmative)
+            {
+                DataSiswa ds = new DataSiswa();
+                string DN = drv.Row[0].ToString();
+                ds.Nisn = DN;
+                try
+                {
+                    if (rn.IsRowExist(DN, 0))
+                    {
+                        if (pcrd.HapusAll(DN) && kcrd.HapusAll(DN) && scrd.HapusAll(DN))
+                        {
+                            if (rn.IsRowExist(DN, 1))
+                            {
+                                if (ecrd.HapusAll(DN) && acrd.HapusAll(DN))
+                                {
+                                    if (sicrud.Hapus(ds))
+                                    {
+                                        await this.ShowMessageAsync("Data Siswa", "Data siswa dan nilai yang berkaitan sudah terhapus!");
+                                        LoadSiswa();
+                                        LoadSikapDll();
+                                        LoadPengKet();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (rn.IsRowExist(DN, 1))
+                    {
+                        if (ecrd.HapusAll(DN) && acrd.HapusAll(DN))
+                        {
+                            if (sicrud.Hapus(ds))
+                            {
+                                await this.ShowMessageAsync("Data Siswa", "Data siswa dan nilai yang berkaitan sudah terhapus!");
+                                LoadSiswa();
+                                LoadSikapDll();
+                                LoadPengKet();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (sicrud.Hapus(ds))
+                        {
+                            await this.ShowMessageAsync("Data Siswa", "Data siswa dan nilai yang berkaitan sudah terhapus!");
+                            LoadSiswa();
+                            LoadSikapDll();
+                            LoadPengKet();
+                        }
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    await this.ShowMessageAsync("Data Siswa", $"Error! {ex.Message}");
+                }                
             }
         }
     }

@@ -67,7 +67,7 @@ namespace SIPRK2013SDFIX.RaportDb
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
         }
-        public bool HapusAll(NilaiKeterampilan nk)
+        public bool HapusAll(string nisn)
         {
             bool isNice = false;
             RaportDB dB = new RaportDB();
@@ -75,7 +75,7 @@ namespace SIPRK2013SDFIX.RaportDb
             const string query = "DELETE FROM nilai_keterampilan WHERE nisn = @nisn";
             var args = new Dictionary<string, object>
             {
-                {"@nisn", nk.Nisn }
+                {"@nisn", nisn }
             };
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
@@ -100,6 +100,49 @@ namespace SIPRK2013SDFIX.RaportDb
                 DeskripsiKeterampilan = dt.Rows[0][9].ToString(),
                 Semester = dt.Rows[0][10].ToString()
             };
+            return nilaiKeterampilan;
+        }
+        public NilaiKeterampilan GetNilaiKeterampilanSiswa(string nisn, string semester, int idmapel)
+        {
+            NilaiKeterampilan nilaiKeterampilan;
+            RaportDB dB = new RaportDB();
+            string query = $"SELECT * FROM nilai_keterampilan WHERE nisn = '{nisn}' AND semester = '{semester}' AND id_mapel = {idmapel}";
+            DataTable dt = dB.GetDataRaport(query);
+            if (dt.Rows.Count > 0)
+            {
+                nilaiKeterampilan = new NilaiKeterampilan
+                {
+                    IdKet = dt.Rows[0][0].ToString(),
+                    Nisn = dt.Rows[0][1].ToString(),
+                    IdMapel = Convert.ToInt32(dt.Rows[0][2]),
+                    KdTertinggi = Convert.ToInt32(dt.Rows[0][3]),
+                    KdTerendah = Convert.ToInt32(dt.Rows[0][4]),
+                    NilaiTertinggi = Convert.ToInt32(dt.Rows[0][5]),
+                    NilaiTerendah = Convert.ToInt32(dt.Rows[0][6]),
+                    NilaiAkhir = Convert.ToInt32(dt.Rows[0][7]),
+                    PredikatKeterampilan = dt.Rows[0][8].ToString(),
+                    DeskripsiKeterampilan = dt.Rows[0][9].ToString(),
+                    Semester = dt.Rows[0][10].ToString()
+                };
+            }
+            else
+            {
+                nilaiKeterampilan = new NilaiKeterampilan
+                {
+                    IdKet = "",
+                    Nisn = "",
+                    IdMapel = 0,
+                    KdTertinggi = 0,
+                    KdTerendah = 0,
+                    NilaiTertinggi = 0,
+                    NilaiTerendah = 0,
+                    NilaiAkhir = 0,
+                    PredikatKeterampilan = "",
+                    DeskripsiKeterampilan = "",
+                    Semester = ""
+                };
+            }
+            
             return nilaiKeterampilan;
         }
     }

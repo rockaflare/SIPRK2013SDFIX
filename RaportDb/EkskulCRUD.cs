@@ -64,7 +64,7 @@ namespace SIPRK2013SDFIX.RaportDb
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
         }
-        public bool HapusAll(NilaiEkskul eks)
+        public bool HapusAll(string nisn)
         {
             bool isNice = false;
             RaportDB dB = new RaportDB();
@@ -72,7 +72,7 @@ namespace SIPRK2013SDFIX.RaportDb
             const string query = "DELETE FROM nilai_ekskul WHERE nisn = @nisn";
             var args = new Dictionary<string, object>
             {
-                {"@nisn", eks.Nisn }
+                {"@nisn", nisn }
             };
 
             return isNice = dB.ExecuteWrite(query, args) > 0 ? true : false;
@@ -95,6 +95,45 @@ namespace SIPRK2013SDFIX.RaportDb
                 Nilai3 = dt.Rows[0][7].ToString(),
                 Semester = dt.Rows[0][8].ToString()
             };
+            return nilaiEkskul;
+        }
+        public NilaiEkskul GetNilaiEkskulSiswa(string nisn, string semester)
+        {
+            NilaiEkskul nilaiEkskul;
+            RaportDB dB = new RaportDB();
+            string query = $"SELECT * FROM nilai_ekskul WHERE nisn = '{nisn}' AND semester = '{semester}'";
+            DataTable dt = dB.GetDataRaport(query);
+            if (dt.Rows.Count > 0)
+            {
+                nilaiEkskul = new NilaiEkskul
+                {
+                    IdEks = dt.Rows[0][0].ToString(),
+                    Nisn = dt.Rows[0][1].ToString(),
+                    Eskul1 = dt.Rows[0][2].ToString(),
+                    Eskul2 = dt.Rows[0][3].ToString(),
+                    Eskul3 = dt.Rows[0][4].ToString(),
+                    Nilai1 = dt.Rows[0][5].ToString(),
+                    Nilai2 = dt.Rows[0][6].ToString(),
+                    Nilai3 = dt.Rows[0][7].ToString(),
+                    Semester = dt.Rows[0][8].ToString()
+                };
+            }
+            else
+            {
+                nilaiEkskul = new NilaiEkskul
+                {
+                    IdEks = "",
+                    Nisn = "",
+                    Eskul1 = "",
+                    Eskul2 = "",
+                    Eskul3 = "",
+                    Nilai1 = "",
+                    Nilai2 = "",
+                    Nilai3 = "",
+                    Semester = ""
+                };
+            }
+            
             return nilaiEkskul;
         }
     }

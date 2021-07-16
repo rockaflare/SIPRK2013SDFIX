@@ -39,7 +39,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button Name="EditSiswa" Content="{materialDesign:PackIcon Kind=Pencil}" Click="EditSiswa_Click"/>
-                                            <Button Name="DelSiswa" Content="{materialDesign:PackIcon Kind=TrashCan}" Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedAccentButton}"/>
+                                            <Button Name="DelSiswa" Content="{materialDesign:PackIcon Kind=TrashCan}" Margin="5,0,0,0" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Click="DelSiswa_Click"/>
                                         </StackPanel>
                                     </DataTemplate>                                    
                                 </DataGridTemplateColumn.CellTemplate>
@@ -73,7 +73,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Button Name="EditSikapDll" Content="{materialDesign:PackIcon Kind=Pencil}" Click="EditSikapDll_Click"/>
-                                            <Button Name="DelSikapDll" Content="{materialDesign:PackIcon Kind=TrashCan}" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5,0,0,0"/>
+                                            <Button Name="DelSikapDll" Content="{materialDesign:PackIcon Kind=TrashCan}" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5,0,0,0" Click="DelSikapDll_Click"/>
                                         </StackPanel>                                        
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

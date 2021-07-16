@@ -48,7 +48,8 @@ namespace SIPRK2013SDFIX
 
         private void Raport_Click(object sender, RoutedEventArgs e)
         {
-
+            var RaportViewer = new RaportView();
+            RaportViewer.ShowDialog();
         }
     }
 }

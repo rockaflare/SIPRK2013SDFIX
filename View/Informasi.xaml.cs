@@ -33,7 +33,6 @@ namespace SIPRK2013SDFIX.View
             ci.DateTimeFormat.LongDatePattern = "dd MMMM yyyy";
             Thread.CurrentThread.CurrentCulture = ci;
             LoadDataSekolah();
-            SetTanggal();
         }
         
         public void SetNisn(string nisn)
@@ -227,8 +226,15 @@ namespace SIPRK2013SDFIX.View
             Agama.Text = ds.Agama;
             Gender.Text = ds.Gender;
             TempatLahir.Text = ds.TempatLahir;
-            DateTime tlahir = DateTime.ParseExact(ds.TglLahir, "dd MMMM yyyy", null);
-            TglLahir.SelectedDate = tlahir;
+            if (ds.TglLahir == "")
+            {
+                TglLahir.SelectedDate = null;
+            }
+            else
+            {
+                TglLahir.SelectedDate = DateTime.ParseExact(ds.TglLahir, "dd MMMM yyyy", null);
+            }
+            
             PendidikanSeb.Text = ds.PendidikanSeb;
             AlamatSiswa.Text = ds.Alamat;
             NmAyah.Text = ds.NmAyah;

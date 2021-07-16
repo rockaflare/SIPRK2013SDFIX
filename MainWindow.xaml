@@ -8,12 +8,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIPRK2013SDFIX"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="{DynamicResource MaterialDesignPaper}">
+        Title="MainWindow" Height="500" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="{DynamicResource MaterialDesignPaper}" Icon="logosmall_50O_icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="210"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image Source="/Image/logo.png"/>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
